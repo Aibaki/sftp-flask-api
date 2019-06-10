@@ -17,7 +17,7 @@ def create_user():
     password = credentials['credentials']['password']
 
     # Primary key in db; incremental
-    uid = 1001
+    uid = 1004
     # gid=0 for root gid=100 for normal users
     gid = 100
     path = credentials['sftp_details']['path']
