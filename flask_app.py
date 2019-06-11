@@ -3,7 +3,7 @@ import subprocess
 import json
 
 app = Flask(__name__)
-
+uid = 1003
 
 @app.route("/create_user", methods=['POST'])
 def create_user():
@@ -17,8 +17,8 @@ def create_user():
     password = credentials['credentials']['password']
 
     # Primary key in db; incremental
-    uid = 1004
     # gid=0 for root gid=100 for normal users
+    uid_current = uid
     gid = 100
     path = credentials['sftp_details']['path']
 
@@ -27,7 +27,8 @@ def create_user():
 
     # Calling the server-side script in this format: create-sftp-user username:Password:uid:gid:upload-folder
     ret = subprocess.call("create-sftp-user.py " + arguments, shell=True)
-    return str(ret)
+    uid+=1
+    return str(uid)
 
 
 if __name__ == "__main__":
