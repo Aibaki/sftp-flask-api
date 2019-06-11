@@ -12,6 +12,8 @@ def create_user():
 
         :returns Response from Server Script Call
     """
+    global uid
+    
     credentials = request.get_json(request.data)
     username = credentials['credentials']['username']
     password = credentials['credentials']['password']
